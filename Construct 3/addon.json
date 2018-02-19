@@ -1,0 +1,26 @@
+﻿{
+	"is-c3-addon": true,
+	"type": "plugin",
+	"name": "Valerypopoff JS Plugin",
+	"id": "ValerypopoffJSPlugin",
+	"version": "0.6.0.0",
+	"author": "Valera Popov",
+	"website": "http://www.valerypopoff.ru",
+	"documentation": "https://readymag.com/valerypopoff/valerypopoff-js-plugin/",
+	"description": "Work with javascript objects and functions",
+	"editor-scripts": [
+						"plugin.js",
+						"type.js",
+						"instance.js"
+					],
+	"file-list": [
+		"c2runtime/runtime.js",
+		"lang/en-US.json",
+		"aces.json",
+		"addon.json",
+		"icon.svg",
+		"instance.js",
+		"plugin.js",
+		"type.js"
+	]
+}
