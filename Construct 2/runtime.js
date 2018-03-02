@@ -419,7 +419,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 					Dotparts = DotStringToDotArray( this.Aliases[alias_name].dotstring + alias_trailer.split('[').join(".[") );
 					else
 					Dotparts = DotStringToDotArray( this.Aliases[alias_name].dotstring );
-					
+										
 				} else 
 				return { 
 						error: 			true, 
@@ -936,6 +936,20 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 		alias_name_ = alias_name_.trim();
 		alias_js_ = alias_js_.trim();
 
+
+		//If the JS is empty, shoot an error
+ 		if( alias_js_.length == 0 )
+ 		{
+		 	var info = 
+		 	{
+		 		debug_caller: "InitAlias",
+		 		caller_name: caller_name_,
+		 		error_message: "Javascript string of alias '" + alias_name_ + "' must not be empty."
+		 	}
+
+		 	this.ShowError( info );
+			return; 			
+ 		}
 
 		//If the alias name contains dots or brackets, shoot an error
  		if( alias_name_.indexOf(".") >= 0 || alias_name_.indexOf("[") >= 0 || alias_name_.indexOf("]") >= 0 )
