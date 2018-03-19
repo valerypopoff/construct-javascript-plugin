@@ -8,19 +8,20 @@
 			"valerypopoffjsplugin": 
 			{
 				"name": "ValerypopoffJS",
-				"description": "Work with javascript objects and functions",
+				"description": "Use javascript functions, get and set object properties and call object methods. Keep event sheets for high-level logic. Implement game objects, and algorithms in javascript.",
 				"help-url": "https://readymag.com/valerypopoff/valerypopoff-js-plugin/",
 
 				"properties": {
 					"Scriptfiles": {
 						"name": "Script files",
-						"desc": "Names of javascript files to include."
+						"desc": "Javascript files to include to the game."
 					}
 				},
 
 				"aceCategories": {
 					"general": "General",
 					"aliases": "Aliases",
+					"eval": "Eval",
 					"c2legacy": "c2legacy"
 				},
 
@@ -52,6 +53,36 @@
 							}
 						}
 					},
+
+					"c2-compare-cell-call-return-value": 
+					{
+						"list-name": "Compare alias Call",
+						"display-text": "{0} {1} [{2}] ({...})",
+						"description": "Call JS function behind the alias and compare its return value (does NOT store return value).",
+						"params": {
+							"value-to-compare": {
+								"name": "Value",
+								"desc": "The value to compare to."
+							},
+							
+							"comparison-options": {
+								"name": "Comparison",
+								"desc": "How to compare."
+							},
+
+							"cell-name": {
+								"name": "Alias expression.",
+								"desc": "Enter alias expression to call."
+							},
+
+							"cell-call-parameters": {
+								"name": "Parameter {n}",
+								"desc": "Parameter to pass to the function."
+							}
+						}
+					},
+
+
 
 					"c2-compare-exec-return-with-parameters": 
 					{
@@ -114,11 +145,11 @@
 					{
 						"list-name": "Compare JS code Completion value",
 						"display-text": "Value of {0} ({...}) {2} {3}",
-						"description": "Compare completion value of JS code with optional parameters (does NOT store return value).",
+						"description": "Compare completion value of JS code with optional parameters (does NOT store return value). This condition uses eval.",
 						"params": {
 							"js-code": {
-								"name": "Javascript code",
-								"desc": "Enter JS code to execute and compare returned completion value. Include parameters into code by their number like this: #0, #1, #2..."
+								"name": "JS code",
+								"desc": "JS string that will be executed with eval. You can include parameters into the string using #-entries like this: #0, #1, #2 ... #999. The string will be parsed and all #-entries will be replaced with respective parameter values."
 							},
 
 							"js-parameters": {
@@ -168,11 +199,38 @@
 					"compare-cell-value": {
 						"list-name": "Compare alias",
 						"display-text": "[{0}] {1} {2}",
-						"description": "Compare the value behind the alias.",
+						"description": "Compare the value behind the alias expression.",
 						"params": {
 							"cell-name": {
-								"name": "Name",
-								"desc": "Alias name."
+								"name": "Alias expression",
+								"desc": "Alias expression to compare."
+							},
+
+							"comparison-options": {
+								"name": "Comparison",
+								"desc": "Select the way to compare the values."
+							},
+
+							"cell-value": {
+								"name": "Value",
+								"desc": "The value to compare to."
+							}													
+						}
+					},					
+
+					"compare-cell-call-return-value": {
+						"list-name": "Compare alias Call",
+						"display-text": "[{0}] ({...}) {2} {3}", 
+						"description": "Call JS function behind the alias expression and compare its return value (does NOT store return value).",
+						"params": {
+							"cell-name": {
+								"name": "Alias expression",
+								"desc": "Alias expression to call."
+							},
+
+							"cell-call-parameters": {
+								"name": "Parameter {n}",
+								"desc": "Parameter to pass to the function."
 							},
 
 							"comparison-options": {
@@ -193,11 +251,11 @@
 					"execute-js-with-parameters": {
 						"list-name": "Execute JS code (stores return value)",
 						"display-text": "Execute code: {0} ({...})",
-						"description": "Execute JS code with optional parameters and store returned completion value.",
+						"description": "Execute JS code with optional parameters and store returned completion value. This action uses eval.",
 						"params": {
 							"js-code": {
 								"name": "JS code",
-								"desc": "Enter JS code to execute. Include parameters into code by their number like this: #0, #1, #2..."
+								"desc": "JS string that will be executed with eval. You can include parameters into the string using #-entries like this: #0, #1, #2 ... #999. The string will be parsed and all #-entries will be replaced with respective parameter values."
 							},
 							"js-parameters": {
 								"name": "Parameter {n}",
@@ -228,8 +286,8 @@
 						"description": "Init alias with javascript code",
 						"params": {
 							"cell-name": {
-								"name": "Name",
-								"desc": "Alias name."
+								"name": "Alias name",
+								"desc": "New alias name to create."
 							},
 							"cell-js": {
 								"name": "JS",
@@ -241,15 +299,15 @@
 					"set-cell": {
 						"list-name": "Set alias",
 						"display-text": "Set [{0}] to {1}",
-						"description": "Set value behind alias",
+						"description": "Set value behind alias expression",
 						"params": {
 							"cell-name": {
-								"name": "Name",
-								"desc": "Alias name."
+								"name": "Alias expression",
+								"desc": "Alias expression to set."
 							},
 							"cell-value": {
 								"name": "Value",
-								"desc": "Value to set the alias to."
+								"desc": "Value to set the alias expression to."
 							}						
 						}
 					},
@@ -257,13 +315,13 @@
 					"call-cell": {
 						"list-name": "Call alias (stores return value)",
 						"display-text": "Call [{0}] ({...})",
-						"description": "Call the function behind alias and store its return value",
+						"description": "Call the function behind alias expression and store its return value",
 						"params": {
 							"cell-name": {
-								"name": "Name",
-								"desc": "Alias name."
+								"name": "Alias expression",
+								"desc": "Alias expression to call."
 							},
-							"js-function-parameters": {
+							"cell-call-parameters": {
 								"name": "Parameter {n}",
 								"desc": "Parameter to pass to the function."
 							}
@@ -281,12 +339,12 @@
 
 					"get-js-execution-return": 
 					{
-						"description": "Execute JS code with optional parameters and get its completion value right away (it will NOT store this value)",
+						"description": "Execute JS code with optional parameters and get its completion value right away (it will NOT store this value). This expression uses eval.",
 						"translated-name": "JSCodeValue",
 						"params": {
 							"js-code": {
-								"name": "JScode",
-								"desc": "Enter JS code to execute and optional parameters. Include parameters into code by their number like this: #0, #1, #2..."
+								"name": "JS code",
+								"desc": "This expression uses eval. Enter JS string (it will be executed with eval) and optional parameters. If you pass parameters, include them into the string using #-entries like this: #0, #1, #2 ... #999. The string will be parsed and all #-entries will be replaced with respective parameter values."
 							}
 						}
 					},
@@ -297,8 +355,8 @@
 						"translated-name": "AliasValue",
 						"params": {
 							"alias-name": {
-								"name": "Alias name",
-								"desc": "Enter alias name."
+								"name": "Alias expression",
+								"desc": "Enter alias expression."
 							}
 						}
 					}

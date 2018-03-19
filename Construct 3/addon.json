@@ -3,11 +3,11 @@
 	"type": "plugin",
 	"name": "Valerypopoff JS Plugin",
 	"id": "ValerypopoffJSPlugin",
-	"version": "0.6.0.0",
+	"version": "0.6.2.0",
 	"author": "Valera Popov",
 	"website": "http://www.valerypopoff.ru",
 	"documentation": "https://readymag.com/valerypopoff/valerypopoff-js-plugin/",
-	"description": "Work with javascript objects and functions",
+	"description": "Use javascript functions, get and set object properties and call object methods. Keep event sheets for high-level logic. Implement game objects, and algorithms in javascript.",
 	"editor-scripts": [
 						"plugin.js",
 						"type.js",

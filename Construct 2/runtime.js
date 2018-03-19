@@ -133,6 +133,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 			    }
 			}
 		}		
+
 	};
 
 	// only called if a layout object
@@ -182,7 +183,6 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 
 	var DotStringToDotArray = function( str_ )
 	{
-		// 2 sec
 		// Array of indexes that will be used to dotsplit the string. Only split by dots that are not in brackets
 		// To determine whether the dot is in brackets, we use simple logic:
 		// if before the dot there's different amount of '[' and ']', the dot is in brackets 
@@ -517,6 +517,18 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 		return pluginProto.cnds.CompareFunctionReturnValue.call( this, funcname_, funcparams_, cmp_, value_ );
 	};
 
+	cnds.C2CompareAliasCallReturnValue = function (value_, cmp_, alias_exp_, funcparams_)
+	{	
+		switch( cmp_ )
+		{
+			case 2: cmp_=4; break;
+			case 3: cmp_=5; break;
+			case 4: cmp_=2; break;
+			case 5: cmp_=3; break;
+		}
+
+		return pluginProto.cnds.CompareAliasCallReturnValue.call( this, alias_exp_, funcparams_, cmp_, value_ );
+	};
 
 	cnds.C2CompareExecReturnWithParams = function (value_, cmp_, code_, params_)
 	{	
@@ -574,6 +586,24 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 			//Double(12) > 24
 		};
 
+		cnds.CompareAliasCallReturnValue = function (alias_exp_, funcparams_, cmp_, value_)
+		{	
+			var store_return_value_ = false;
+			var ret = undefined;
+
+			//Calling the CallAlias action with the flag "false" so it doesn't not store return value. 
+			//We only want to store return value when the user explicitly calls Plugin Actions that execute JS code
+			ret = pluginProto.acts.CallAlias.call( this, alias_exp_, funcparams_, store_return_value_, "'Compare Alias Call return value' condition" );
+
+			if( typeof ret === "boolean" )
+			ret = ret ? 1 : 0;
+				
+			return cr.do_cmp(ret, cmp_, value_);
+
+			//Double(12) > 24
+		};
+
+
 		cnds.CompareExecReturnWithParams = function (code_, params_, cmp_, value_)
 		{	
 			var ret = undefined;
@@ -627,6 +657,23 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 
 			//24 < Double(12)
 		};		
+
+		cnds.CompareAliasCallReturnValue = function (value_, cmp_, alias_exp_, funcparams_)
+		{	
+			var store_return_value_ = false;
+			var ret = undefined;
+
+			//Calling the CallAlias action with the flag "false" so it doesn't not store return value. 
+			//We only want to store return value when the user explicitly calls Plugin Actions that execute JS code
+			ret = pluginProto.acts.CallAlias.call( this, alias_exp_, funcparams_, store_return_value_, "'Compare Alias Call return value' condition" );
+
+			if( typeof ret === "boolean" )
+			ret = ret ? 1 : 0;
+				
+			return cr.do_cmp(value_, cmp_, ret);
+
+			//24 < Double(12)
+		};
 
 		cnds.CompareExecReturnWithParams = function (value_, cmp_, code_, params_)
 		{	
@@ -1049,10 +1096,17 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 	}
 
 
-	acts.CallAlias = function (alias_exp_, funcparams_)
+	acts.CallAlias = function (alias_exp_, funcparams_, store_return_value_, caller_name_)
 	{
- 		var store_return_value_ = true;
- 		var caller_name_ = "'Call alias' action";
+ 		//If no store_return_value_ passed, make it true
+ 		if( store_return_value_ === undefined )
+ 		store_return_value_ = true;
+
+		//If no caller_name_ passed, make it "'Call function' action"
+  		if( caller_name_ === undefined )
+ 		caller_name_ = "'Call alias' action";
+
+
  		var final = this.ParseJS(alias_exp_, true, caller_name_);
 
  		

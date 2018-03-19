@@ -12,7 +12,7 @@
 	const PLUGIN_ID = "ValerypopoffJSPlugin";
 	////////////////////////////////////////////
 	
-	const PLUGIN_VERSION = "0.6.0.0";
+	const PLUGIN_VERSION = "0.6.2.0";
 	const PLUGIN_CATEGORY = "data-and-storage";
 	
 	let app = null;

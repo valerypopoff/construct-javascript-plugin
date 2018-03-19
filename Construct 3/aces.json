@@ -18,6 +18,22 @@
 			},
 
 			{
+				"id": "c2-compare-cell-call-return-value",
+				"c2id": 5,
+				"isDeprecated": true,
+				"scriptName": "C2CompareAliasCallReturnValue",
+				"highlight": false,
+				"params": [
+					{ "id": "value-to-compare", "type": "any" },
+					{ "id": "comparison-options", "type": "cmp" },
+					{ "id": "cell-name", "type": "string" },
+					{ "id": "cell-call-parameters", "type": "variadic" }
+				]
+			},
+
+
+
+			{
 				"id": "c2-compare-exec-return-with-parameters",
 				"c2id": 1,
 				"isDeprecated": true,
@@ -41,23 +57,10 @@
 				"id": "compare-function-return-value",
 				
 				"scriptName": "CompareFunctionReturnValue",
-				"highlight": true,
+				"highlight": false,
 				"params": [
 					{ "id": "js-function-name", "type": "string" },
 					{ "id": "js-function-parameters", "type": "variadic" },
-					{ "id": "comparison-options", "type": "cmp" },
-					{ "id": "value-to-compare", "type": "any" }
-				]
-			},
-
-			{
-				"id": "compare-exec-return-with-parameters",
-				
-				"scriptName": "CompareExecReturnWithParams",
-				"highlight": false,
-				"params": [
-					{ "id": "js-code", "type": "string" },
-					{ "id": "js-parameters", "type": "variadic" },
 					{ "id": "comparison-options", "type": "cmp" },
 					{ "id": "value-to-compare", "type": "any" }
 				]
@@ -81,19 +84,8 @@
 				"highlight": true
 			}			
 		],
-		"actions": [
-
-			{
-				"id": "execute-js-with-parameters",
-				"c2id": 0,
-				"scriptName": "ExecuteJSWithParams",
-				"highlight": false,
-				"params": [
-					{ "id": "js-code", "type": "string" },
-					{ "id": "js-parameters", "type": "variadic" }	
-				]				
-			},
-
+		"actions": 
+		[
 			{
 				"id": "call-js-function",
 				"c2id": 1,
@@ -104,7 +96,6 @@
 					{ "id": "js-function-parameters", "type": "variadic" }					
 				]				
 			}
-
 		],
 		"expressions": 
 		[
@@ -115,20 +106,7 @@
 				"scriptName": "StoredReturnValue",
 				"highlight": false,
 				"returnType": "any"
-			},
-
-			{
-				"id": "get-js-execution-return",
-				"c2id": 1,					
-				"expressionName": "JSCodeValue",
-				"scriptName": "JSCodeValue",
-				"highlight": true,
-				"returnType": "any",
-				"isVariadicParameters": true,
-				"params": [
-					{ "id": "js-code", "type": "string" }					
-				]
-			}			
+			}
 		]
 	},
 
@@ -145,6 +123,19 @@
 					{ "id": "comparison-options", "type": "cmp" },
 					{ "id": "cell-value", "type": "any" }
 				]				
+			},
+
+			{
+				"id": "compare-cell-call-return-value",
+
+				"scriptName": "CompareAliasCallReturnValue",
+				"highlight": false,
+				"params": [
+					{ "id": "cell-name", "type": "string" },
+					{ "id": "cell-call-parameters", "type": "variadic" },
+					{ "id": "comparison-options", "type": "cmp" },
+					{ "id": "cell-value", "type": "any" }
+				]				
 			}
 		],
 
@@ -153,7 +144,7 @@
 				"id": "init-cell",
 				"c2id": 2,				
 				"scriptName": "InitAlias",
-				"highlight": false,
+				"highlight": true,
 				"params": [
 					{ "id": "cell-name", "type": "string" },
 					{ "id": "cell-js", "type": "string" }
@@ -164,7 +155,7 @@
 				"id": "set-cell",
 				"c2id": 3,				
 				"scriptName": "SetAlias",
-				"highlight": true,
+				"highlight": false,
 				"params": [
 					{ "id": "cell-name", "type": "string" },
 					{ "id": "cell-value", "type": "any" }
@@ -178,7 +169,7 @@
 				"highlight": false,
 				"params": [
 					{ "id": "cell-name", "type": "string" },
-					{ "id": "js-function-parameters", "type": "variadic" }					
+					{ "id": "cell-call-parameters", "type": "variadic" }					
 				]				
 			}
 
@@ -197,6 +188,55 @@
 				]				
 			}
 		]	
+	},
+	
+	"eval": 
+	{
+		"conditions": 
+		[
+			{
+				"id": "compare-exec-return-with-parameters",
+				
+				"scriptName": "CompareExecReturnWithParams",
+				"highlight": false,
+				"params": [
+					{ "id": "js-code", "type": "string" },
+					{ "id": "js-parameters", "type": "variadic" },
+					{ "id": "comparison-options", "type": "cmp" },
+					{ "id": "value-to-compare", "type": "any" }
+				]
+			}
+		],
+
+		"actions": 
+		[
+			{
+				"id": "execute-js-with-parameters",
+				"c2id": 0,
+				"scriptName": "ExecuteJSWithParams",
+				"highlight": false,
+				"params": [
+					{ "id": "js-code", "type": "string" },
+					{ "id": "js-parameters", "type": "variadic" }	
+				]				
+			}
+		],
+
+		"expressions": 
+		[
+			{
+				"id": "get-js-execution-return",
+				"c2id": 1,					
+				"expressionName": "JSCodeValue",
+				"scriptName": "JSCodeValue",
+				"highlight": true,
+				"returnType": "any",
+				"isVariadicParameters": true,
+				"params": [
+					{ "id": "js-code", "type": "string" }					
+				]
+			}			
+		]
 	}
 
 }
