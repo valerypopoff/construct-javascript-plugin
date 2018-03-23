@@ -321,7 +321,7 @@
 								"name": "Alias expression",
 								"desc": "Alias expression to call."
 							},
-							"cell-call-parameters": {
+							"js-function-parameters": {
 								"name": "Parameter {n}",
 								"desc": "Parameter to pass to the function."
 							}

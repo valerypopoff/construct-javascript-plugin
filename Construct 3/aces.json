@@ -169,7 +169,7 @@
 				"highlight": false,
 				"params": [
 					{ "id": "cell-name", "type": "string" },
-					{ "id": "cell-call-parameters", "type": "variadic" }					
+					{ "id": "js-function-parameters", "type": "variadic" }					
 				]				
 			}
 
