@@ -1,8 +1,8 @@
 // ECMAScript 5 strict mode
 "use strict";
 
-var __CONSTRUCT2_RUNTIME2__ = false;
-var __CONSTRUCT3_RUNTIME2__ = true;
+var __CONSTRUCT2_RUNTIME2__ = true;
+var __CONSTRUCT3_RUNTIME2__ = false;
 var __CONSTRUCT3_RUNTIME3__ = false;
 var __DEBUG__ = false;
 
@@ -31,9 +31,9 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 
 	var typeProto = pluginProto.Type.prototype;
 
-
+	// called on startup for each object type
 	typeProto.onCreate = function()
-	{	
+	{
 	};
 
 	/////////////////////////////////////
@@ -43,12 +43,12 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 		this.type = type;
 		this.runtime = type.runtime;
 		
-		// Initialise object properties
-		//this.testProperty = 0;
+		// any other properties you need, e.g...
+		// this.myValue = 0;
 	};
 	
 	var instanceProto = pluginProto.Instance.prototype;
-	
+
 	instanceProto.onCreate = function()
 	{
 				this.returnValue = undefined;
@@ -141,20 +141,17 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 		}		
 	};
 	
-	instanceProto.saveToJSON = function ()
-	{
-		return {};
-	};
-	
-	instanceProto.loadFromJSON = function (o)
+	// only called if a layout object - draw to a canvas 2D context
+	instanceProto.draw = function(ctx)
 	{
 	};
 	
-	/**BEGIN-PREVIEWONLY**/
-	instanceProto.getDebuggerValues = function (propsections)
+	// only called if a layout object in WebGL mode - draw to the WebGL context
+	// 'glw' is not a WebGL context, it's a wrapper - you can find its methods in GLWrap.js in the install
+	// directory or just copy what other plugins do.
+	instanceProto.drawGL = function (glw)
 	{
 	};
-	/**END-PREVIEWONLY**/
 
 	
 	var IsValidIdentifier = function(name_)
@@ -273,7 +270,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 
 		return callstring;
 	}
-
+	
 	var InstanceFunctionsObject = {
 	ShowError( info )
 	{
@@ -1383,7 +1380,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 	}
 	
 	pluginProto.exps = new Exps();
-	
+
 	instanceProto.EXPS = pluginProto.exps;
 	instanceProto.CNDS = pluginProto.cnds;
 	instanceProto.ACTS = pluginProto.acts;

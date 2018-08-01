@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<c2addon>
+	<!-- One of: plugin, behavior, effect -->
+	<type>plugin</type>
+	
+	<name>ValerypopoffJS</name>	
+	<version>0.6.3</version>
+	<author>Valera Popov</author>
+	<website>http://valerypopoff.ru/</website>
+	<documentation>https://readymag.com/valerypopoff/valerypopoff-js-plugin/</documentation>
+	<description>Use javascript functions, get and set object properties and call object methods. Keep event sheets for high-level logic. Implement game objects, and algorithms in javascript.</description>
+</c2addon>

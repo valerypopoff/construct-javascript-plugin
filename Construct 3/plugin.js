@@ -1,5 +1,6 @@
 "use strict";
 
+
 {
 	////////////////////////////////////////////
 	// The plugin ID is how Construct identifies different kinds of plugins.
@@ -12,10 +13,8 @@
 	const PLUGIN_ID = "ValerypopoffJSPlugin";
 	////////////////////////////////////////////
 	
-	const PLUGIN_VERSION = "0.6.2.1";
+	const PLUGIN_VERSION = "0.6.3";
 	const PLUGIN_CATEGORY = "data-and-storage";
-	
-	let app = null;
 	
 	const PLUGIN_CLASS = SDK.Plugins.ValerypopoffJSPlugin = class ValerypopoffJSPlugin extends SDK.IPluginBase
 	{
@@ -23,7 +22,7 @@
 		{
 			super(PLUGIN_ID);
 			
-			SDK.Lang.PushContext("plugins.valerypopoffjsplugin");
+			SDK.Lang.PushContext("plugins." + PLUGIN_ID.toLowerCase());
 			
 			this._info.SetName(lang(".name"));
 			this._info.SetDescription(lang(".description"));
@@ -32,6 +31,9 @@
 			this._info.SetAuthor("Valera Popov");
 			this._info.SetHelpUrl(lang(".help-url"));
 			this._info.SetIsSingleGlobal(true);
+			
+			// Support both the C2 and C3 runtimes
+			this._info.SetSupportedRuntimes(["c2", "c3"]);
 			
 			SDK.Lang.PushContext(".properties");
 			
@@ -47,5 +49,3 @@
 	
 	PLUGIN_CLASS.Register(PLUGIN_ID, PLUGIN_CLASS);
 }
-
-

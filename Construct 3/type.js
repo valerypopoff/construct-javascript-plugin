@@ -3,7 +3,7 @@
 {
 	const PLUGIN_CLASS = SDK.Plugins.ValerypopoffJSPlugin;
 	
-	PLUGIN_CLASS.Type = class ValerypopoffJSType extends SDK.ITypeBase
+	PLUGIN_CLASS.Type = class ValerypopoffJSPluginType extends SDK.ITypeBase
 	{
 		constructor(sdkPlugin, iObjectType)
 		{

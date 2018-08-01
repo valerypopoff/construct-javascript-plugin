@@ -1,6 +1,6 @@
-﻿{
+{
 	"languageTag": "en-US",
-	"fileDescription": "Strings for ValerypopoffJSPlugin.",
+	"fileDescription": "Strings for ValerypopoffJS.",
 	"text": 
 	{
 		"plugins": 
@@ -10,357 +10,306 @@
 				"name": "ValerypopoffJS",
 				"description": "Use javascript functions, get and set object properties and call object methods. Keep event sheets for high-level logic. Implement game objects, and algorithms in javascript.",
 				"help-url": "https://readymag.com/valerypopoff/valerypopoff-js-plugin/",
-
-				"properties": {
-					"Scriptfiles": {
-						"name": "Script files",
-						"desc": "Javascript files to include to the game."
+				"properties": 
+				{
+					"Scriptfiles": 
+					{
+						"name": "Script files"
+						,"desc": "Javascript files to include to the game."
 					}
 				},
-
-				"aceCategories": {
-					"general": "General",
-					"aliases": "Aliases",
+				
+				"aceCategories": 
+				{
+					"c2legacy": "c2legacy",
 					"eval": "Eval",
-					"c2legacy": "c2legacy"
+					"general": "General",
+					"aliases": "Aliases"
 				},
+				
 
-				"conditions": {
+				"conditions": 
+				{
 					"c2-compare-function-return-value": 
 					{
 						"list-name": "Compare Function Return value",
 						"display-text": "{0} {1} function {2} ({...})",
+						"translated-name": "Compare Function Return value",
 						"description": "Call JS function and compare its return value (does NOT store return value).",
-						"params": {
-							"value-to-compare": {
-								"name": "Value",
-								"desc": "The value to compare to."
-							},
-							
-							"comparison-options": {
-								"name": "Comparison",
-								"desc": "How to compare."
-							},
-
-							"js-function-name": {
-								"name": "JS function name (no parentheses)",
-								"desc": "Enter JS function name to call."
-							},
-
-							"js-function-parameters": {
-								"name": "Parameter {n}",
-								"desc": "Parameter to pass to the function."
-							}
+						"params": 
+						{
+							"value-to-compare": 
+							{ "name": "Value", "desc": "The value to compare to."},
+							"comparison-options": 
+							{ "name": "Comparison", "desc": "How to compare."},
+							"js-function-name": 
+							{ "name": "JS function name (no parentheses)", "desc": "Enter JS function name to call."},
+							"js-function-parameters": 
+							{ "name": "Parameter {n}", "desc": "Parameter to pass to the function."}
 						}
 					},
-
 					"c2-compare-cell-call-return-value": 
 					{
 						"list-name": "Compare alias Call",
 						"display-text": "{0} {1} [{2}] ({...})",
-						"description": "Call JS function behind the alias and compare its return value (does NOT store return value).",
-						"params": {
-							"value-to-compare": {
-								"name": "Value",
-								"desc": "The value to compare to."
-							},
-							
-							"comparison-options": {
-								"name": "Comparison",
-								"desc": "How to compare."
-							},
-
-							"cell-name": {
-								"name": "Alias expression.",
-								"desc": "Enter alias expression to call."
-							},
-
-							"cell-call-parameters": {
-								"name": "Parameter {n}",
-								"desc": "Parameter to pass to the function."
-							}
+						"translated-name": "Compare alias Call",
+						"description": "Call JS function behind the alias expression and compare its return value (does NOT store return value).",
+						"params": 
+						{
+							"value-to-compare": 
+							{ "name": "Value", "desc": "The value to compare to."},
+							"comparison-options": 
+							{ "name": "Comparison", "desc": "How to compare."},
+							"cell-name": 
+							{ "name": "Alias expression", "desc": "Alias expression to call."},
+							"cell-call-parameters": 
+							{ "name": "Parameter {n}", "desc": "Parameter to pass to the function."}
 						}
 					},
-
-
-
 					"c2-compare-exec-return-with-parameters": 
 					{
 						"list-name": "Compare JS code Completion value",
-						"display-text": "{0} {1} {2} ({...})",
-						"description": "Compare completion value of JS code with optional parameters (does NOT store return value).",
-						"params": {
-							"value-to-compare": {
-								"name": "Value",
-								"desc": "The value to compare to."
-							},
-							
-							"comparison-options": {
-								"name": "Comparison",
-								"desc": "How to compare."
-							},
-
-							"js-code": {
-								"name": "Javascript code",
-								"desc": "Enter JS code to execute and compare returned completion value. Include parameters into code by their number like this: #0, #1, #2..."
-							},
-
-							"js-parameters": {
-								"name": "Parameter {n}",
-								"desc": "Parameter to pass to the code."
-							}
-
+						"display-text": "{0} {1} value of {2} ({...})",
+						"translated-name": "Compare JS code Completion value",
+						"description": "Compare completion value of JS code with optional parameters (does NOT store return value). This condition uses eval.",
+						"params": 
+						{
+							"value-to-compare": 
+							{ "name": "Value", "desc": "The value to compare to."},
+							"comparison-options": 
+							{ "name": "Comparison", "desc": "How to compare."},
+							"js-code": 
+							{ "name": "JS code", "desc": "JS string that will be executed with eval. You can include parameters into the string using #-entries like this: #0, #1, #2 ... #999. The string will be parsed and all #-entries will be replaced with respective parameter values."},
+							"js-parameters": 
+							{ "name": "Parameter {n}", "desc": "Parameter to pass to the code."}
 						}
 					},
-
-					"compare-function-return-value": 
-					{
-						"list-name": "Compare Function Return value",
-						"display-text": "Function {0} ({...}) {2} {3} ",
-						"description": "Call JS function and compare its return value (does NOT store return value).",
-						"params": {
-							"js-function-name": {
-								"name": "JS function name (no parentheses)",
-								"desc": "Enter JS function name to call."
-							},
-
-							"js-function-parameters": {
-								"name": "Parameter {n}",
-								"desc": "Parameter to pass to the function."
-							},
-
-							"comparison-options": {
-								"name": "Comparison",
-								"desc": "How to compare."
-							},
-
-							"value-to-compare": {
-								"name": "Value",
-								"desc": "The value to compare to."
-							}
-						}
-					},
-
 					"compare-exec-return-with-parameters": 
 					{
 						"list-name": "Compare JS code Completion value",
 						"display-text": "Value of {0} ({...}) {2} {3}",
+						"translated-name": "Compare JS code Completion value",
 						"description": "Compare completion value of JS code with optional parameters (does NOT store return value). This condition uses eval.",
-						"params": {
-							"js-code": {
-								"name": "JS code",
-								"desc": "JS string that will be executed with eval. You can include parameters into the string using #-entries like this: #0, #1, #2 ... #999. The string will be parsed and all #-entries will be replaced with respective parameter values."
-							},
-
-							"js-parameters": {
-								"name": "Parameter {n}",
-								"desc": "Parameter to pass to the code."
-							},
-
-							"comparison-options": {
-								"name": "Comparison",
-								"desc": "How to compare."
-							},
-
-							"value-to-compare": {
-								"name": "Value",
-								"desc": "The value to compare to."
-							}
+						"params": 
+						{
+							"js-code": 
+							{ "name": "JS code", "desc": "JS string that will be executed with eval. You can include parameters into the string using #-entries like this: #0, #1, #2 ... #999. The string will be parsed and all #-entries will be replaced with respective parameter values."},
+							"js-parameters": 
+							{ "name": "Parameter {n}", "desc": "Parameter to pass to the code."},
+							"comparison-options": 
+							{ "name": "Comparison", "desc": "How to compare."},
+							"value-to-compare": 
+							{ "name": "Value", "desc": "The value to compare to."}
 						}
 					},
-
-					"compare-stored-return-value": {
+					"compare-function-return-value": 
+					{
+						"list-name": "Compare Function Return value",
+						"display-text": "Function {0} ({...}) {2} {3}",
+						"translated-name": "Compare Function Return value",
+						"description": "Call JS function and compare its return value (does NOT store return value).",
+						"params": 
+						{
+							"js-function-name": 
+							{ "name": "JS function name (no parentheses)", "desc": "Enter JS function name to call."},
+							"js-function-parameters": 
+							{ "name": "Parameter {n}", "desc": "Parameter to pass to the function."},
+							"comparison-options": 
+							{ "name": "Comparison", "desc": "How to compare."},
+							"value-to-compare": 
+							{ "name": "Value", "desc": "The value to compare to."}
+						}
+					},
+					"compare-stored-return-value": 
+					{
 						"list-name": "Compare Stored Return value",
 						"display-text": "Stored Return {0} {1}",
+						"translated-name": "Compare Stored Return value",
 						"description": "Compare last stored return value after actions.",
-						"params": {
-							"comparison-options": {
-								"name": "Comparison",
-								"desc": "How to compare."
-							},
-
-							"value-to-compare": {
-								"name": "Value",
-								"desc": "The value to compare to."
-							}
+						"params": 
+						{
+							"comparison-options": 
+							{ "name": "Comparison", "desc": "How to compare."},
+							"value-to-compare": 
+							{ "name": "Value", "desc": "The value to compare to."}
 						}
 					},
-
-					"all-scripts-loaded": {
+					"all-scripts-loaded": 
+					{
 						"list-name": "All scripts loaded",
 						"display-text": "All scripts loaded",
+						"translated-name": "All scripts loaded",
 						"description": "Check if all scripts are loaded.",
-						"params": {
-							
-							
+						"params": 
+						{
 						}
 					},
-
-					"compare-cell-value": {
+					"compare-cell-value": 
+					{
 						"list-name": "Compare alias",
 						"display-text": "[{0}] {1} {2}",
+						"translated-name": "Compare alias",
 						"description": "Compare the value behind the alias expression.",
-						"params": {
-							"cell-name": {
-								"name": "Alias expression",
-								"desc": "Alias expression to compare."
-							},
-
-							"comparison-options": {
-								"name": "Comparison",
-								"desc": "Select the way to compare the values."
-							},
-
-							"cell-value": {
-								"name": "Value",
-								"desc": "The value to compare to."
-							}													
+						"params": 
+						{
+							"cell-name": 
+							{ "name": "Alias expression", "desc": "Alias expression to compare."},
+							"comparison-options": 
+							{ "name": "Comparison", "desc": "How to compare."},
+							"cell-value": 
+							{ "name": "Value", "desc": "The value to compare to."}
 						}
-					},					
-
-					"compare-cell-call-return-value": {
+					},
+					"compare-cell-call-return-value": 
+					{
 						"list-name": "Compare alias Call",
-						"display-text": "[{0}] ({...}) {2} {3}", 
+						"display-text": "[{0}] ({...}) {2} {3}",
+						"translated-name": "Compare alias Call",
 						"description": "Call JS function behind the alias expression and compare its return value (does NOT store return value).",
-						"params": {
-							"cell-name": {
-								"name": "Alias expression",
-								"desc": "Alias expression to call."
-							},
-
-							"cell-call-parameters": {
-								"name": "Parameter {n}",
-								"desc": "Parameter to pass to the function."
-							},
-
-							"comparison-options": {
-								"name": "Comparison",
-								"desc": "Select the way to compare the values."
-							},
-
-							"cell-value": {
-								"name": "Value",
-								"desc": "The value to compare to."
-							}													
-						}
-					}					
-				},
-
-				"actions": {
-					
-					"execute-js-with-parameters": {
-						"list-name": "Execute JS code (stores return value)",
-						"display-text": "Execute code: {0} ({...})",
-						"description": "Execute JS code with optional parameters and store returned completion value. This action uses eval.",
-						"params": {
-							"js-code": {
-								"name": "JS code",
-								"desc": "JS string that will be executed with eval. You can include parameters into the string using #-entries like this: #0, #1, #2 ... #999. The string will be parsed and all #-entries will be replaced with respective parameter values."
-							},
-							"js-parameters": {
-								"name": "Parameter {n}",
-								"desc": "Parameter to pass to the code."
-							}
-						}
-					},
-
-					"call-js-function": {
-						"list-name": "Call JS function (stores return value)",
-						"display-text": "Call function: {0} ({...})",
-						"description": "Call JS function with optional parameters and store its return value.",
-						"params": {
-							"js-function-name": {
-								"name": "JS function name (no parentheses)",
-								"desc": "Enter JS function name to call."
-							},
-							"js-function-parameters": {
-								"name": "Parameter {n}",
-								"desc": "Parameter to pass to the function."
-							}
-						}						
-					},
-
-					"init-cell": {
-						"list-name": "Init alias",
-						"display-text": "Init [{0}] with javascript {1}",
-						"description": "Init alias with javascript code",
-						"params": {
-							"cell-name": {
-								"name": "Alias name",
-								"desc": "New alias name to create."
-							},
-							"cell-js": {
-								"name": "JS",
-								"desc": "What the alias is associated with in JS."
-							}
-						}
-					},
-
-					"set-cell": {
-						"list-name": "Set alias",
-						"display-text": "Set [{0}] to {1}",
-						"description": "Set value behind alias expression",
-						"params": {
-							"cell-name": {
-								"name": "Alias expression",
-								"desc": "Alias expression to set."
-							},
-							"cell-value": {
-								"name": "Value",
-								"desc": "Value to set the alias expression to."
-							}						
-						}
-					},
-
-					"call-cell": {
-						"list-name": "Call alias (stores return value)",
-						"display-text": "Call [{0}] ({...})",
-						"description": "Call the function behind alias expression and store its return value",
-						"params": {
-							"cell-name": {
-								"name": "Alias expression",
-								"desc": "Alias expression to call."
-							},
-							"js-function-parameters": {
-								"name": "Parameter {n}",
-								"desc": "Parameter to pass to the function."
-							}
+						"params": 
+						{
+							"cell-name": 
+							{ "name": "Alias expression", "desc": "Alias expression to call."},
+							"cell-call-parameters": 
+							{ "name": "Parameter {n}", "desc": "Parameter to pass to the function."},
+							"comparison-options": 
+							{ "name": "Comparison", "desc": "How to compare."},
+							"cell-value": 
+							{ "name": "Value", "desc": "The value to compare to."}
 						}
 					}
 				},
-
-				"expressions": 
+				"actions": 
 				{
-					"get-stored-execution-return": 
+					"execute-js-with-parameters": 
 					{
-						"description": "Get stored return value after actions",
-						"translated-name": "StoredReturnValue"
-					},
-
-					"get-js-execution-return": 
-					{
-						"description": "Execute JS code with optional parameters and get its completion value right away (it will NOT store this value). This expression uses eval.",
-						"translated-name": "JSCodeValue",
-						"params": {
-							"js-code": {
-								"name": "JS code",
-								"desc": "This expression uses eval. Enter JS string (it will be executed with eval) and optional parameters. If you pass parameters, include them into the string using #-entries like this: #0, #1, #2 ... #999. The string will be parsed and all #-entries will be replaced with respective parameter values."
-							}
+						"list-name": "Execute JS code (stores return value)",
+						"display-text": "Execute code: {0} ({...})",
+						"translated-name": "Execute JS code (stores return value)",
+						"description": "Execute JS code with optional parameters and store returned completion value. This action uses eval.",
+						"params": 
+						{
+							"js-code": 
+							{ "name": "JS code", "desc": "JS string that will be executed with eval. You can include parameters into the string using #-entries like this: #0, #1, #2 ... #999. The string will be parsed and all #-entries will be replaced with respective parameter values."},
+							"js-parameters": 
+							{ "name": "Parameter {n}", "desc": "Parameter to pass to the code."}
 						}
 					},
-
+					"call-js-function": 
+					{
+						"list-name": "Call JS function (stores return value)",
+						"display-text": "Call function: {0} ({...})",
+						"translated-name": "Call JS function (stores return value)",
+						"description": "Call JS function with optional parameters and store its return value.",
+						"params": 
+						{
+							"js-function-name": 
+							{ "name": "JS function name (no parentheses)", "desc": "Enter JS function name to call."},
+							"js-function-parameters": 
+							{ "name": "Parameter {n}", "desc": "Parameter to pass to the function."}
+						}
+					},
+					"init-cell": 
+					{
+						"list-name": "Init alias",
+						"display-text": "Init [{0}] with javascript {1}",
+						"translated-name": "Init alias",
+						"description": "Init alias with javascript code.",
+						"params": 
+						{
+							"cell-name": 
+							{ "name": "Alias name", "desc": "New alias name to create."},
+							"cell-js": 
+							{ "name": "JS", "desc": "What the alias is associated with in JS."}
+						}
+					},
+					"set-cell": 
+					{
+						"list-name": "Set alias",
+						"display-text": "Set [{0}] to {1}",
+						"translated-name": "Set alias",
+						"description": "Set value behind alias expression.",
+						"params": 
+						{
+							"cell-name": 
+							{ "name": "Alias expression", "desc": "Alias expression to set."},
+							"cell-value": 
+							{ "name": "Value", "desc": "Value to set the alias expression to."}
+						}
+					},
+					"call-cell": 
+					{
+						"list-name": "Call alias (stores return value)",
+						"display-text": "Call [{0}] ({...})",
+						"translated-name": "Call alias (stores return value)",
+						"description": "Call the function behind alias expression and store its return value.",
+						"params": 
+						{
+							"cell-name": 
+							{ "name": "Alias expression", "desc": "Alias expression to call."},
+							"js-function-parameters": 
+							{ "name": "Parameter {n}", "desc": "Parameter to pass to the function."}
+						}
+					}
+				},
+				"expressions": 
+				{
+					"get-js-execution-return": 
+					{
+						"list-name": "JSCodeValue",
+						"translated-name": "JSCodeValue",
+						"description": "Execute JS code with optional parameters and get its completion value right away (it will NOT store this value). This expression uses eval.",
+						"params": 
+						{
+							"js-code": 
+							{ "name": "JS code", "desc": "This expression uses eval. Enter JS string (it will be executed with eval) and optional parameters. If you pass parameters, include them into the string using #-entries like this: #0, #1, #2 ... #999. The string will be parsed and all #-entries will be replaced with respective parameter values."}
+						}
+					},
+					"get-stored-execution-return": 
+					{
+						"list-name": "StoredReturnValue",
+						"translated-name": "StoredReturnValue",
+						"description": "Get stored return value after actions",
+						"params": 
+						{
+						}
+					},
+					"function-return-value": 
+					{
+						"list-name": "FunctionReturnValue",
+						"translated-name": "FunctionReturnValue",
+						"description": "Call JS function with optional parameters and get its return value right away (it will NOT store this value).",
+						"params": 
+						{
+							"func-name": 
+							{ "name": "JS function name (no parentheses)", "desc": "Enter JS function name to call."}
+						}
+					},
 					"get-alias-value": 
 					{
-						"description": "Get alias value",
+						"list-name": "AliasValue",
 						"translated-name": "AliasValue",
-						"params": {
-							"alias-name": {
-								"name": "Alias expression",
-								"desc": "Enter alias expression."
-							}
+						"description": "Get alias value",
+						"params": 
+						{
+							"alias-name": 
+							{ "name": "Alias expression", "desc": "Enter alias expression."}
+						}
+					},
+					"get-alias-call-value": 
+					{
+						"list-name": "AliasCallReturnValue",
+						"translated-name": "AliasCallReturnValue",
+						"description": "Call the function behind alias expression with optional parameters and get its return value right away (it will NOT store this value).",
+						"params": 
+						{
+							"func-name": 
+							{ "name": "Alias expression", "desc": "Enter alias expression."}
 						}
 					}
 				}
+
+
 			}
 		}
 	}

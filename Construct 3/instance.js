@@ -3,7 +3,7 @@
 {
 	const PLUGIN_CLASS = SDK.Plugins.ValerypopoffJSPlugin;
 	
-	PLUGIN_CLASS.Instance = class ValerypopoffJSInstance extends SDK.IInstanceBase
+	PLUGIN_CLASS.Instance = class ValerypopoffJSPluginInstance extends SDK.IInstanceBase
 	{
 		constructor(sdkType, inst)
 		{

@@ -1,242 +1,286 @@
-﻿{
-	"c2legacy": 
-	{
-		"conditions": 
-		[
-			{
-				"id": "c2-compare-function-return-value",
-				"c2id": 0,
-				"isDeprecated": true,
-				"scriptName": "C2CompareFunctionReturnValue",
-				"highlight": false,
-				"params": [
-					{ "id": "value-to-compare", "type": "any" },
-					{ "id": "comparison-options", "type": "cmp" },
-					{ "id": "js-function-name", "type": "string" },
-					{ "id": "js-function-parameters", "type": "variadic" }
-				]
-			},
-
-			{
-				"id": "c2-compare-cell-call-return-value",
-				"c2id": 5,
-				"isDeprecated": true,
-				"scriptName": "C2CompareAliasCallReturnValue",
-				"highlight": false,
-				"params": [
-					{ "id": "value-to-compare", "type": "any" },
-					{ "id": "comparison-options", "type": "cmp" },
-					{ "id": "cell-name", "type": "string" },
-					{ "id": "cell-call-parameters", "type": "variadic" }
-				]
-			},
-
-
-
-			{
-				"id": "c2-compare-exec-return-with-parameters",
-				"c2id": 1,
-				"isDeprecated": true,
-				"scriptName": "C2CompareExecReturnWithParams",
-				"highlight": false,
-				"params": [
-					{ "id": "value-to-compare", "type": "any" },
-					{ "id": "comparison-options", "type": "cmp" },
-					{ "id": "js-code", "type": "string" },
-					{ "id": "js-parameters", "type": "variadic" }
-				]
-			}
-		]
-	},
-
-	"general": 
-	{
-		"conditions": 
-		[
-			{
-				"id": "compare-function-return-value",
-				
-				"scriptName": "CompareFunctionReturnValue",
-				"highlight": false,
-				"params": [
-					{ "id": "js-function-name", "type": "string" },
-					{ "id": "js-function-parameters", "type": "variadic" },
-					{ "id": "comparison-options", "type": "cmp" },
-					{ "id": "value-to-compare", "type": "any" }
-				]
-			},
-
-			{
-				"id": "compare-stored-return-value",
-				"c2id": 2,
-				"scriptName": "CompareStoredReturnValue",
-				"highlight": false,
-				"params": [
-					{ "id": "comparison-options", "type": "cmp" },
-					{ "id": "value-to-compare", "type": "any" }
-				]
-			},
-
-			{
-				"id": "all-scripts-loaded",
-				"c2id": 3,
-				"scriptName": "AllScriptsLoaded",
-				"highlight": true
-			}			
-		],
-		"actions": 
-		[
-			{
-				"id": "call-js-function",
-				"c2id": 1,
-				"scriptName": "CallJSfunction",
-				"highlight": true,
-				"params": [
-					{ "id": "js-function-name", "type": "string" },
-					{ "id": "js-function-parameters", "type": "variadic" }					
-				]				
-			}
-		],
-		"expressions": 
-		[
-			{
-				"id": "get-stored-execution-return",
-				"c2id": 0,				
-				"expressionName": "StoredReturnValue",
-				"scriptName": "StoredReturnValue",
-				"highlight": false,
-				"returnType": "any"
-			}
-		]
-	},
-
-	"aliases": 
-	{
-		"conditions": [
-			{
-				"id": "compare-cell-value",
-				"c2id": 4,
-				"scriptName": "CompareAliasValue",
-				"highlight": true,
-				"params": [
-					{ "id": "cell-name", "type": "string" },
-					{ "id": "comparison-options", "type": "cmp" },
-					{ "id": "cell-value", "type": "any" }
-				]				
-			},
-
-			{
-				"id": "compare-cell-call-return-value",
-
-				"scriptName": "CompareAliasCallReturnValue",
-				"highlight": false,
-				"params": [
-					{ "id": "cell-name", "type": "string" },
-					{ "id": "cell-call-parameters", "type": "variadic" },
-					{ "id": "comparison-options", "type": "cmp" },
-					{ "id": "cell-value", "type": "any" }
-				]				
-			}
-		],
-
-		"actions": [
-			{
-				"id": "init-cell",
-				"c2id": 2,				
-				"scriptName": "InitAlias",
-				"highlight": true,
-				"params": [
-					{ "id": "cell-name", "type": "string" },
-					{ "id": "cell-js", "type": "string" }
-				]				
-			},
-
-			{
-				"id": "set-cell",
-				"c2id": 3,				
-				"scriptName": "SetAlias",
-				"highlight": false,
-				"params": [
-					{ "id": "cell-name", "type": "string" },
-					{ "id": "cell-value", "type": "any" }
-				]				
-			},
-
-			{
-				"id": "call-cell",
-				"c2id": 4,					
-				"scriptName": "CallAlias",
-				"highlight": false,
-				"params": [
-					{ "id": "cell-name", "type": "string" },
-					{ "id": "js-function-parameters", "type": "variadic" }					
-				]				
-			}
-
-		],
-
-		"expressions": [
-			{
-				"id": "get-alias-value",
-				"c2id": 2,					
-				"expressionName": "AliasValue",
-				"scriptName": "AliasValue",
-				"highlight": false,
-				"returnType": "any",
-				"params": [
-					{ "id": "alias-name", "type": "string" }					
-				]				
-			}
-		]	
-	},
-	
-	"eval": 
-	{
-		"conditions": 
-		[
-			{
-				"id": "compare-exec-return-with-parameters",
-				
-				"scriptName": "CompareExecReturnWithParams",
-				"highlight": false,
-				"params": [
-					{ "id": "js-code", "type": "string" },
-					{ "id": "js-parameters", "type": "variadic" },
-					{ "id": "comparison-options", "type": "cmp" },
-					{ "id": "value-to-compare", "type": "any" }
-				]
-			}
-		],
-
-		"actions": 
-		[
-			{
-				"id": "execute-js-with-parameters",
-				"c2id": 0,
-				"scriptName": "ExecuteJSWithParams",
-				"highlight": false,
-				"params": [
-					{ "id": "js-code", "type": "string" },
-					{ "id": "js-parameters", "type": "variadic" }	
-				]				
-			}
-		],
-
-		"expressions": 
-		[
-			{
-				"id": "get-js-execution-return",
-				"c2id": 1,					
-				"expressionName": "JSCodeValue",
-				"scriptName": "JSCodeValue",
-				"highlight": true,
-				"returnType": "any",
-				"isVariadicParameters": true,
-				"params": [
-					{ "id": "js-code", "type": "string" }					
-				]
-			}			
-		]
-	}
+{
+"c2legacy":
+{
+	"conditions":
+	[
+		{  
+			"id": "c2-compare-function-return-value",
+			"c2id": 0,
+			"isDeprecated": true,
+			"scriptName": "C2CompareFunctionReturnValue",
+			"expressionName": "C2CompareFunctionReturnValue",
+			"highlight": false,
+			"params": 
+			[
+				{ "id": "value-to-compare", "type": "any" },
+				{ "id": "comparison-options", "type": "cmp" },
+				{ "id": "js-function-name", "type": "string" },
+				{ "id": "js-function-parameters", "type": "variadic" }
+			]				
+		},
+		{  
+			"id": "c2-compare-cell-call-return-value",
+			"c2id": 5,
+			"isDeprecated": true,
+			"scriptName": "C2CompareAliasCallReturnValue",
+			"expressionName": "C2CompareAliasCallReturnValue",
+			"highlight": false,
+			"params": 
+			[
+				{ "id": "value-to-compare", "type": "any" },
+				{ "id": "comparison-options", "type": "cmp" },
+				{ "id": "cell-name", "type": "string" },
+				{ "id": "cell-call-parameters", "type": "variadic" }
+			]				
+		},
+		{  
+			"id": "c2-compare-exec-return-with-parameters",
+			"c2id": 1,
+			"isDeprecated": true,
+			"scriptName": "C2CompareExecReturnWithParams",
+			"expressionName": "C2CompareExecReturnWithParams",
+			"highlight": false,
+			"params": 
+			[
+				{ "id": "value-to-compare", "type": "any" },
+				{ "id": "comparison-options", "type": "cmp" },
+				{ "id": "js-code", "type": "string" },
+				{ "id": "js-parameters", "type": "variadic" }
+			]				
+		}
+	]
+},
+"eval":
+{
+	"conditions":
+	[
+		{  
+			"id": "compare-exec-return-with-parameters",
+			"scriptName": "CompareExecReturnWithParams",
+			"expressionName": "CompareExecReturnWithParams",
+			"highlight": false,
+			"params": 
+			[
+				{ "id": "js-code", "type": "string" },
+				{ "id": "js-parameters", "type": "variadic" },
+				{ "id": "comparison-options", "type": "cmp" },
+				{ "id": "value-to-compare", "type": "any" }
+			]				
+		}
+	],
+	"actions":
+	[
+		{  
+			"id": "execute-js-with-parameters",
+			"c2id": 0,
+			"scriptName": "ExecuteJSWithParams",
+			"expressionName": "ExecuteJSWithParams",
+			"highlight": false,
+			"params": 
+			[
+				{ "id": "js-code", "type": "string" },
+				{ "id": "js-parameters", "type": "variadic" }
+			]				
+		}
+	],
+	"expressions":
+	[
+		{  
+			"id": "get-js-execution-return",
+			"c2id": 1,
+			"scriptName": "JSCodeValue",
+			"expressionName": "JSCodeValue",
+			"highlight": true,
+			"returnType": "any",
+			"isVariadicParameters": true,
+			"params": 
+			[
+				{ "id": "js-code", "type": "string" }
+			]				
+		}
+	]
+},
+"general":
+{
+	"conditions":
+	[
+		{  
+			"id": "compare-function-return-value",
+			"scriptName": "CompareFunctionReturnValue",
+			"expressionName": "CompareFunctionReturnValue",
+			"highlight": false,
+			"params": 
+			[
+				{ "id": "js-function-name", "type": "string" },
+				{ "id": "js-function-parameters", "type": "variadic" },
+				{ "id": "comparison-options", "type": "cmp" },
+				{ "id": "value-to-compare", "type": "any" }
+			]				
+		},
+		{  
+			"id": "compare-stored-return-value",
+			"c2id": 2,
+			"scriptName": "CompareStoredReturnValue",
+			"expressionName": "CompareStoredReturnValue",
+			"highlight": false,
+			"params": 
+			[
+				{ "id": "comparison-options", "type": "cmp" },
+				{ "id": "value-to-compare", "type": "any" }
+			]				
+		},
+		{  
+			"id": "all-scripts-loaded",
+			"c2id": 3,
+			"scriptName": "AllScriptsLoaded",
+			"expressionName": "AllScriptsLoaded",
+			"highlight": true,
+			"params": 
+			[
+			]				
+		}
+	],
+	"actions":
+	[
+		{  
+			"id": "call-js-function",
+			"c2id": 1,
+			"scriptName": "CallJSfunction",
+			"expressionName": "CallJSfunction",
+			"highlight": true,
+			"params": 
+			[
+				{ "id": "js-function-name", "type": "string" },
+				{ "id": "js-function-parameters", "type": "variadic" }
+			]				
+		}
+	],
+	"expressions":
+	[
+		{  
+			"id": "get-stored-execution-return",
+			"c2id": 0,
+			"scriptName": "StoredReturnValue",
+			"expressionName": "StoredReturnValue",
+			"highlight": true,
+			"returnType": "any",
+			"params": 
+			[
+			]				
+		},
+		{  
+			"id": "function-return-value",
+			"c2id": 4,
+			"scriptName": "FunctionReturnValue",
+			"expressionName": "FunctionReturnValue",
+			"highlight": false,
+			"returnType": "any",
+			"isVariadicParameters": true,
+			"params": 
+			[
+				{ "id": "func-name", "type": "string" }
+			]				
+		}
+	]
+},
+"aliases":
+{
+	"conditions":
+	[
+		{  
+			"id": "compare-cell-value",
+			"c2id": 4,
+			"scriptName": "CompareAliasValue",
+			"expressionName": "CompareAliasValue",
+			"highlight": true,
+			"params": 
+			[
+				{ "id": "cell-name", "type": "string" },
+				{ "id": "comparison-options", "type": "cmp" },
+				{ "id": "cell-value", "type": "any" }
+			]				
+		},
+		{  
+			"id": "compare-cell-call-return-value",
+			"scriptName": "CompareAliasCallReturnValue",
+			"expressionName": "CompareAliasCallReturnValue",
+			"highlight": false,
+			"params": 
+			[
+				{ "id": "cell-name", "type": "string" },
+				{ "id": "cell-call-parameters", "type": "variadic" },
+				{ "id": "comparison-options", "type": "cmp" },
+				{ "id": "cell-value", "type": "any" }
+			]				
+		}
+	],
+	"actions":
+	[
+		{  
+			"id": "init-cell",
+			"c2id": 2,
+			"scriptName": "InitAlias",
+			"expressionName": "InitAlias",
+			"highlight": true,
+			"params": 
+			[
+				{ "id": "cell-name", "type": "string" },
+				{ "id": "cell-js", "type": "string" }
+			]				
+		},
+		{  
+			"id": "set-cell",
+			"c2id": 3,
+			"scriptName": "SetAlias",
+			"expressionName": "SetAlias",
+			"highlight": false,
+			"params": 
+			[
+				{ "id": "cell-name", "type": "string" },
+				{ "id": "cell-value", "type": "any" }
+			]				
+		},
+		{  
+			"id": "call-cell",
+			"c2id": 4,
+			"scriptName": "CallAlias",
+			"expressionName": "CallAlias",
+			"highlight": false,
+			"params": 
+			[
+				{ "id": "cell-name", "type": "string" },
+				{ "id": "js-function-parameters", "type": "variadic" }
+			]				
+		}
+	],
+	"expressions":
+	[
+		{  
+			"id": "get-alias-value",
+			"c2id": 2,
+			"scriptName": "AliasValue",
+			"expressionName": "AliasValue",
+			"highlight": false,
+			"returnType": "any",
+			"params": 
+			[
+				{ "id": "alias-name", "type": "string" }
+			]				
+		},
+		{  
+			"id": "get-alias-call-value",
+			"c2id": 3,
+			"scriptName": "AliasCallReturnValue",
+			"expressionName": "AliasCallReturnValue",
+			"highlight": false,
+			"returnType": "any",
+			"isVariadicParameters": true,
+			"params": 
+			[
+				{ "id": "func-name", "type": "string" }
+			]				
+		}
+	]
+}
 
 }
