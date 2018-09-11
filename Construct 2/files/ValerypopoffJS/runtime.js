@@ -1,6 +1,17 @@
 // ECMAScript 5 strict mode
 "use strict";
 
+if( window === undefined )
+{
+	var window = ("undefined" == typeof window) ? 
+					("undefined" == typeof global) ? 
+						("undefined" == typeof self) ? 
+						this
+						:self
+					:global
+				:window;
+}
+
 var __CONSTRUCT2_RUNTIME2__ = true;
 var __CONSTRUCT3_RUNTIME2__ = false;
 var __CONSTRUCT3_RUNTIME3__ = false;
@@ -73,70 +84,147 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 		};
 
 
-		//If there's js script file specified, include it into the webpage
+		// Adds scripts to the page and does all the success handling 
+		// On success it decreases the scripts counter (this.sciptsToLoad) so we know that all scripts are loaded if it's zero 
+		function AddScriptToPage(this_, nameOfExternalScript)
+		{
+			if( document === undefined )
+			{
+				this_.ShowError(
+				{
+					debug_caller: "Including '"+ nameOfExternalScript +"' script to the page",
+					caller_name: "Including '"+ nameOfExternalScript +"' script to the page",              
+					error_message: "'document' is not defined. You're probably launching the game in a Worker. Workers are not supported yet. Export project with 'Use worker' option unchecked in the 'Advanced' section of the 'Project properties' panel."
+				});
+
+				return;
+			}
+
+			//$.ajax is preferable because it automatically makes the whole game wait until scripts are loaded
+			//for some reason if it's not jquery, it doesn't wait automatically and you have to check if scripts are loaded 				
+			if( window.jQuery )
+			{  
+ 				$.ajax(
+ 				{  
+					url: nameOfExternalScript, 
+					dataType: "script", 
+					async: false,
+					success: function()
+					{ 
+						this_.sciptsToLoad-- ; 
+					},
+					error: function(XMLHttpRequest)
+					{
+						this_.ShowError(
+						{
+							debug_caller: "Including '"+ nameOfExternalScript +"' script to the page",
+							caller_name: "Including '"+ nameOfExternalScript +"' script to the page",              
+							error_message: XMLHttpRequest.status
+						});
+					} 
+				});
+		    } else  
+			//if jQuery is not presented, load scripts using regular javascript
+		    {
+				var myScriptTag = document.createElement('script');
+				myScriptTag.setAttribute("type","text/javascript");
+				myScriptTag.setAttribute("src", nameOfExternalScript);
+				myScriptTag.onreadystatechange = function ()
+				{
+  					if (this.readyState == 'complete') 
+  					this_.sciptsToLoad--; 
+				}
+				myScriptTag.onload = function(){ this_.sciptsToLoad--; };
+				myScriptTag.onerror = function()
+				{
+					this_.ShowError(
+					{
+						debug_caller: "Including '"+ nameOfExternalScript +"' script to the page",
+						caller_name: "Including '"+ nameOfExternalScript +"' script to the page",              
+						error_message: "Probably file not found"
+					});					
+				};
+
+				document.getElementsByTagName("head")[0].appendChild(myScriptTag);
+		    }
+		}
+
+		//If there's js script files specified, include them into the webpage
 		if( this.properties[0] != "" )
 		{
 			//Script names are separated with '\n' or ';' depending on a Construct version
 			var lines = [];
+
+			// Split the string into array of script names
 			if( __CONSTRUCT2_RUNTIME2__ )
-			{
 				lines = this.properties[0].split(';');	
-			}
 			else
-			{
-				lines = this.properties[0].split('\n');
-			}
+				//lines = this.properties[0].split('\n');
+				lines = this.properties[0].split(/[;\n\r]/);
 			
 			for(var i=0; i<lines.length; i++)
 			{
+				lines[i] = lines[i].trim();
 				//Skip the string if it's empty or contains only spaces
-				var temp = lines[i];
-				if( !temp.replace(/\s/g, '').length )
-				continue;
+					//var temp = lines[i];
+					//if( !temp.replace(/\s/g, '').length )
+					//continue;
+				if( lines[i].length == 0 )
+				{
+				   continue;
+				} 
 
-				//Remember that we need to load this script
+
+				// Increase the scripts counter
 				this.sciptsToLoad++;
 
-				var nameOfExternalScript = "";
+
 				if( __CONSTRUCT2_RUNTIME2__ )
 				{
-					nameOfExternalScript = lines[i];
-				} else
-				{
-					// C2 runtime
-					if( this.runtime !== undefined )
-						nameOfExternalScript = this.runtime.getProjectFileUrl( lines[i] );
-					// C3 runtime
-					else
-						nameOfExternalScript = this._runtime.GetAssetManager().GetProjectFileUrl( lines[i] );
-				}
-
-				var this_ = this;
-				//$.ajax is preferable because it automatically makes the whole game wait until scripts are loaded
-				//for some reason if it's not jquery, it doesn't wait autimatically and you have to check if scripts are loaded 				
-				if (window.jQuery)
-				{  
-	 				$.ajax({  
-					url: nameOfExternalScript, 
-					dataType: "script", 
-					async: false,
-					success: function(){ this_.sciptsToLoad-- ; } 
-					});
-			    } else  
-				//if jQuery is not presented, load scripts using regular javascript
-			    {
-					var myScriptTag = document.createElement('script');
-					myScriptTag.setAttribute("type","text/javascript");
-					myScriptTag.setAttribute("src", nameOfExternalScript);
-					myScriptTag.onreadystatechange = function ()
+					AddScriptToPage(this, lines[i]);
+				} 
+				
+				if( __CONSTRUCT3_RUNTIME2__ )
+				{					
+					AddScriptToPage(this, this.runtime.getLocalFileUrl( lines[i] ) );
+					
+				} 
+				
+				if( __CONSTRUCT3_RUNTIME3__ )
+				{					
+					let filename = lines[i];
+					
+					// For Construct3 r116 and higher
+					if( this._runtime.GetAssetManager().LoadProjectFileUrl !== undefined )
 					{
-	  					if (this.readyState == 'complete') 
-	  					this_.sciptsToLoad--; 
+						this._runtime.GetAssetManager().LoadProjectFileUrl( filename )
+						.then(url=>
+						{
+							AddScriptToPage(this, url)
+						}, err=>
+						{
+							this.ShowError(
+							{
+								debug_caller: "Including '"+ filename +"' script to the page",
+								caller_name: "Including '"+ filename +"' script to the page",              
+								error_message: err.message
+							});
+						}).catch(err=>
+						{
+							this.ShowError(
+							{
+								debug_caller: "Including '"+ filename +"' script to the page",
+								caller_name: "Including '"+ filename +"' script to the page",              
+								error_message: err.message
+							});
+						})
 					}
-					myScriptTag.onload = function(){ this_.sciptsToLoad--; };
-
-					document.getElementsByTagName("head")[0].appendChild(myScriptTag);
-			    }
+					// For Construct3 r115 and lower
+					else
+					{
+						AddScriptToPage(this, this._runtime.GetAssetManager().GetLocalFileUrl( filename ));
+					}
+				}
 			}
 		}		
 	};
@@ -153,8 +241,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 	{
 	};
 
-	
-	var IsValidIdentifier = function(name_)
+		var IsValidIdentifier = function(name_)
 	{	
 		var fnNameRegex = /^[$A-Z_][0-9A-Z_$]*$/i;
 		return fnNameRegex.test( name_ );

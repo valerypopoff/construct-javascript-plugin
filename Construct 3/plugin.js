@@ -13,7 +13,7 @@
 	const PLUGIN_ID = "ValerypopoffJSPlugin";
 	////////////////////////////////////////////
 	
-	const PLUGIN_VERSION = "0.6.3";
+	const PLUGIN_VERSION = "0.6.4";
 	const PLUGIN_CATEGORY = "data-and-storage";
 	
 	const PLUGIN_CLASS = SDK.Plugins.ValerypopoffJSPlugin = class ValerypopoffJSPlugin extends SDK.IPluginBase

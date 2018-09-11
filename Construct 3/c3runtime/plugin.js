@@ -1,5 +1,16 @@
 "use strict";
 
+if( window === undefined )
+{
+	var window = ("undefined" == typeof window) ? 
+					("undefined" == typeof global) ? 
+						("undefined" == typeof self) ? 
+						this
+						:self
+					:global
+				:window;
+}
+
 var __CONSTRUCT2_RUNTIME2__ = false;
 var __CONSTRUCT3_RUNTIME2__ = false;
 var __CONSTRUCT3_RUNTIME3__ = true;
