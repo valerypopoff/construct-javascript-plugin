@@ -4,7 +4,7 @@ function GetPluginSettings()
 	return {
 		"name":			"ValerypopoffJS",				// as appears in 'insert object' dialog, can be changed as long as "id" stays the same
 		"id":			"ValerypopoffJSPlugin",				// this is used to identify this plugin and is saved to the project; never change it
-		"version":		"0.6.4",					// (float in x.y format) Plugin version - C2 shows compatibility warnings based on this
+		"version":		"0.6.5",					// (float in x.y format) Plugin version - C2 shows compatibility warnings based on this
 		"description":	"Use javascript functions, get and set object properties and call object methods. Keep event sheets for high-level logic. Implement game objects, and algorithms in javascript.",
 		"author":		"Valera Popov",
 		"help url":		"https://readymag.com/valerypopoff/valerypopoff-js-plugin/",

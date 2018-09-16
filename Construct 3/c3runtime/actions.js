@@ -3,7 +3,7 @@
 {
 var ActsObject = 
 {
-	ExecuteJSWithParams(code, params_)
+	ExecuteJSWithParams: function(code, params_)
     {
         var caller_name_ = "'Execute JS code' action";
         this.returnValue = undefined;
@@ -38,7 +38,7 @@ var ActsObject =
             return;
         }
     },
-	CallJSfunction(funcname_, funcparams_, store_return_value_, caller_name_, final_)
+	CallJSfunction: function(funcname_, funcparams_, store_return_value_, caller_name_, final_)
     {
         //If no store_return_value_ passed, make it true
         if( store_return_value_ === undefined )
@@ -131,7 +131,7 @@ var ActsObject =
         return ret;
          
     },
-	InitAlias(alias_name_, alias_js_)
+	InitAlias: function(alias_name_, alias_js_)
     {
         var caller_name_ = "'Init alias' action";
         alias_name_ = alias_name_.trim();
@@ -193,7 +193,7 @@ var ActsObject =
  
         this.Aliases[alias_name_] = newAlias;
     },
-	SetAlias(alias_exp_, alias_value_)
+	SetAlias: function(alias_exp_, alias_value_)
     {
         var caller_name_ = "'Set alias' action";
         var final = this.ParseJS(alias_exp_, true, "'Set alias' action");
@@ -246,7 +246,7 @@ var ActsObject =
             return;         
         } 
     },
-	CallAlias(alias_exp_, funcparams_, store_return_value_, caller_name_)
+	CallAlias: function(alias_exp_, funcparams_, store_return_value_, caller_name_)
     {
         //If no store_return_value_ passed, make it true
         if( store_return_value_ === undefined )

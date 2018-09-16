@@ -3,14 +3,14 @@
 {
 	var ExpsObject =
 	{
-	JSCodeValue()
+	JSCodeValue: function()
     {
 	    //- C2-C3 COMPATIBILITY -------------------------
-	    var params_ = Array.from(arguments);
+	    var params_ = Array.prototype.slice.call(arguments);
 	    var ret;
 
 	    if( __CONSTRUCT3_RUNTIME3__ )
-	    	ret = {set_int(){}, set_float(){}, set_string(){}, set_any(){}};
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
 		else
 		{
 			ret = params_[0];
@@ -71,14 +71,14 @@
         	return jsret;
         }
     },
-	StoredReturnValue() 
+	StoredReturnValue: function() 
     {
 	    //- C2-C3 COMPATIBILITY -------------------------
-	    var params_ = Array.from(arguments);
+	    var params_ = Array.prototype.slice.call(arguments);
 	    var ret;
 
 	    if( __CONSTRUCT3_RUNTIME3__ )
-	    	ret = {set_int(){}, set_float(){}, set_string(){}, set_any(){}};
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
 		else
 		{
 			ret = params_[0];
@@ -106,14 +106,14 @@
         	return this.returnValue;
         }
     },
-	FunctionReturnValue()    
+	FunctionReturnValue: function()    
     {
 	    //- C2-C3 COMPATIBILITY -------------------------
-	    var params_ = Array.from(arguments);
+	    var params_ = Array.prototype.slice.call(arguments);
 	    var ret;
 
 	    if( __CONSTRUCT3_RUNTIME3__ )
-	    	ret = {set_int(){}, set_float(){}, set_string(){}, set_any(){}};
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
 		else
 		{
 			ret = params_[0];
@@ -165,14 +165,14 @@
  
         return;
     },
-	AliasValue()    
+	AliasValue: function()    
     {
 	    //- C2-C3 COMPATIBILITY -------------------------
-	    var params_ = Array.from(arguments);
+	    var params_ = Array.prototype.slice.call(arguments);
 	    var ret;
 
 	    if( __CONSTRUCT3_RUNTIME3__ )
-	    	ret = {set_int(){}, set_float(){}, set_string(){}, set_any(){}};
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
 		else
 		{
 			ret = params_[0];
@@ -255,14 +255,14 @@
  
         return;
     },
-	AliasCallReturnValue()  
+	AliasCallReturnValue: function()  
     {
 	    //- C2-C3 COMPATIBILITY -------------------------
-	    var params_ = Array.from(arguments);
+	    var params_ = Array.prototype.slice.call(arguments);
 	    var ret;
 
 	    if( __CONSTRUCT3_RUNTIME3__ )
-	    	ret = {set_int(){}, set_float(){}, set_string(){}, set_any(){}};
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
 		else
 		{
 			ret = params_[0];

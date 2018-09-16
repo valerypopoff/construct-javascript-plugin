@@ -191,30 +191,30 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 				} 
 				
 				if( __CONSTRUCT3_RUNTIME3__ )
-				{					
-					let filename = lines[i];
+				{
+					var this_ = this;
 					
 					// For Construct3 r116 and higher
-					if( this._runtime.GetAssetManager().LoadProjectFileUrl !== undefined )
+					if( this_._runtime.GetAssetManager().LoadProjectFileUrl !== undefined )
 					{
-						this._runtime.GetAssetManager().LoadProjectFileUrl( filename )
-						.then(url=>
+						this_._runtime.GetAssetManager().LoadProjectFileUrl( lines[i] )
+						.then(function(url)
 						{
-							AddScriptToPage(this, url)
-						}, err=>
+							AddScriptToPage(this_, url)
+						}, function(err)
 						{
-							this.ShowError(
+							this_.ShowError(
 							{
-								debug_caller: "Including '"+ filename +"' script to the page",
-								caller_name: "Including '"+ filename +"' script to the page",              
+								debug_caller: "Including '"+ lines[i] +"' script to the page",
+								caller_name: "Including '"+ lines[i] +"' script to the page",              
 								error_message: err.message
 							});
-						}).catch(err=>
+						}).catch(function(err)
 						{
-							this.ShowError(
+							this_.ShowError(
 							{
-								debug_caller: "Including '"+ filename +"' script to the page",
-								caller_name: "Including '"+ filename +"' script to the page",              
+								debug_caller: "Including '"+ lines[i] +"' script to the page",
+								caller_name: "Including '"+ lines[i] +"' script to the page",              
 								error_message: err.message
 							});
 						})
@@ -222,11 +222,11 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 					// For Construct3 r115 and lower
 					else
 					{
-						AddScriptToPage(this, this._runtime.GetAssetManager().GetLocalFileUrl( filename ));
+						AddScriptToPage(this_, this_._runtime.GetAssetManager().GetLocalFileUrl( lines[i] ));
 					}
 				}
 			}
-		}		
+		}
 	};
 	
 	instanceProto.saveToJSON = function ()
@@ -362,7 +362,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 	}
 
 	var InstanceFunctionsObject = {
-	ShowError( info )
+	ShowError: function( info )
 	{
 
 		var error_str = "ValerypopoffJS plugin: Error in " + info.caller_name + "\n";
@@ -392,7 +392,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 		console.error( error_str );	
 	},
 	
-	Resolve( dotparts_, caller_name_, code_, alias_name_, alias_trailer_ )
+	Resolve: function( dotparts_, caller_name_, code_, alias_name_, alias_trailer_ )
 	{
 		var context = window;
 		var end = context;
@@ -507,7 +507,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 		return { error: false, context: context, end: end, endname: endname };
 	},
 	
-	ParseJS(code_, is_alias_, caller_name_)
+	ParseJS: function(code_, is_alias_, caller_name_)
 	{
 		var alias_found = false;
 		var alias_name = undefined;
@@ -642,7 +642,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 
 	var CndsObject =
 	{
-	C2CompareFunctionReturnValue(value_, cmp_, funcname_, funcparams_)
+	C2CompareFunctionReturnValue: function(value_, cmp_, funcname_, funcparams_)
     {   
         switch( cmp_ )
         {
@@ -654,7 +654,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
  
         return this.CNDS.CompareFunctionReturnValue.call( this, funcname_, funcparams_, cmp_, value_ );
     },
-	C2CompareAliasCallReturnValue(value_, cmp_, alias_exp_, funcparams_)
+	C2CompareAliasCallReturnValue: function(value_, cmp_, alias_exp_, funcparams_)
     {   
         switch( cmp_ )
         {
@@ -666,7 +666,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
  
         return this.CNDS.CompareAliasCallReturnValue.call( this, alias_exp_, funcparams_, cmp_, value_ );
     },
-	C2CompareExecReturnWithParams(value_, cmp_, code_, params_)
+	C2CompareExecReturnWithParams: function(value_, cmp_, code_, params_)
     {   
         switch( cmp_ )
         {
@@ -678,7 +678,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
  
         return this.CNDS.CompareExecReturnWithParams.call( this, code_, params_, cmp_, value_ );
     },
-	CompareExecReturnWithParams(code_, params_, cmp_, value_)
+	CompareExecReturnWithParams: function(code_, params_, cmp_, value_)
     {   
         var ret = undefined;
         var caller_name_ = "'Compare JS code Completion value' condition";
@@ -712,7 +712,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
              
         return cr.do_cmp(ret, cmp_, value_);
     },
-	CompareFunctionReturnValue(funcname_, funcparams_, cmp_, value_)
+	CompareFunctionReturnValue: function(funcname_, funcparams_, cmp_, value_)
     {   
         var store_return_value_ = false;
         var ret = undefined;
@@ -728,7 +728,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 
         //Double(12) > 24
     },
-	CompareStoredReturnValue(cmp_, value_)
+	CompareStoredReturnValue: function(cmp_, value_)
     {   
         var ret = this.returnValue;
  
@@ -737,11 +737,11 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
              
         return cr.do_cmp(ret, cmp_, value_);
     },
-	AllScriptsLoaded()
+	AllScriptsLoaded: function()
     {   
         return ( this.sciptsToLoad <= 0 ) ? true : false;
     },
-	CompareAliasValue(alias_exp_, cmp_, value_)
+	CompareAliasValue: function(alias_exp_, cmp_, value_)
     {   
         var caller_name_ = "'Compare alias' condition";
         var store_return_value_ = false;
@@ -803,7 +803,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
             return cr.do_cmp(ret, cmp_, value_);
         }
     },
-	CompareAliasCallReturnValue(alias_exp_, funcparams_, cmp_, value_)
+	CompareAliasCallReturnValue: function(alias_exp_, funcparams_, cmp_, value_)
     {   
         var store_return_value_ = false;
         var ret = undefined;
@@ -835,7 +835,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 
 	var ActsObject =
 	{
-	ExecuteJSWithParams(code, params_)
+	ExecuteJSWithParams: function(code, params_)
     {
         var caller_name_ = "'Execute JS code' action";
         this.returnValue = undefined;
@@ -870,7 +870,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
             return;
         }
     },
-	CallJSfunction(funcname_, funcparams_, store_return_value_, caller_name_, final_)
+	CallJSfunction: function(funcname_, funcparams_, store_return_value_, caller_name_, final_)
     {
         //If no store_return_value_ passed, make it true
         if( store_return_value_ === undefined )
@@ -963,7 +963,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
         return ret;
          
     },
-	InitAlias(alias_name_, alias_js_)
+	InitAlias: function(alias_name_, alias_js_)
     {
         var caller_name_ = "'Init alias' action";
         alias_name_ = alias_name_.trim();
@@ -1025,7 +1025,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
  
         this.Aliases[alias_name_] = newAlias;
     },
-	SetAlias(alias_exp_, alias_value_)
+	SetAlias: function(alias_exp_, alias_value_)
     {
         var caller_name_ = "'Set alias' action";
         var final = this.ParseJS(alias_exp_, true, "'Set alias' action");
@@ -1078,7 +1078,7 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
             return;         
         } 
     },
-	CallAlias(alias_exp_, funcparams_, store_return_value_, caller_name_)
+	CallAlias: function(alias_exp_, funcparams_, store_return_value_, caller_name_)
     {
         //If no store_return_value_ passed, make it true
         if( store_return_value_ === undefined )
@@ -1134,14 +1134,14 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
 
 	var ExpsObject =
 	{
-	JSCodeValue()
+	JSCodeValue: function()
     {
 	    //- C2-C3 COMPATIBILITY -------------------------
-	    var params_ = Array.from(arguments);
+	    var params_ = Array.prototype.slice.call(arguments);
 	    var ret;
 
 	    if( __CONSTRUCT3_RUNTIME3__ )
-	    	ret = {set_int(){}, set_float(){}, set_string(){}, set_any(){}};
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
 		else
 		{
 			ret = params_[0];
@@ -1202,14 +1202,14 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
         	return jsret;
         }
     },
-	StoredReturnValue() 
+	StoredReturnValue: function() 
     {
 	    //- C2-C3 COMPATIBILITY -------------------------
-	    var params_ = Array.from(arguments);
+	    var params_ = Array.prototype.slice.call(arguments);
 	    var ret;
 
 	    if( __CONSTRUCT3_RUNTIME3__ )
-	    	ret = {set_int(){}, set_float(){}, set_string(){}, set_any(){}};
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
 		else
 		{
 			ret = params_[0];
@@ -1237,14 +1237,14 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
         	return this.returnValue;
         }
     },
-	FunctionReturnValue()    
+	FunctionReturnValue: function()    
     {
 	    //- C2-C3 COMPATIBILITY -------------------------
-	    var params_ = Array.from(arguments);
+	    var params_ = Array.prototype.slice.call(arguments);
 	    var ret;
 
 	    if( __CONSTRUCT3_RUNTIME3__ )
-	    	ret = {set_int(){}, set_float(){}, set_string(){}, set_any(){}};
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
 		else
 		{
 			ret = params_[0];
@@ -1296,14 +1296,14 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
  
         return;
     },
-	AliasValue()    
+	AliasValue: function()    
     {
 	    //- C2-C3 COMPATIBILITY -------------------------
-	    var params_ = Array.from(arguments);
+	    var params_ = Array.prototype.slice.call(arguments);
 	    var ret;
 
 	    if( __CONSTRUCT3_RUNTIME3__ )
-	    	ret = {set_int(){}, set_float(){}, set_string(){}, set_any(){}};
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
 		else
 		{
 			ret = params_[0];
@@ -1386,14 +1386,14 @@ cr.plugins_.ValerypopoffJSPlugin = function(runtime)
  
         return;
     },
-	AliasCallReturnValue()  
+	AliasCallReturnValue: function()  
     {
 	    //- C2-C3 COMPATIBILITY -------------------------
-	    var params_ = Array.from(arguments);
+	    var params_ = Array.prototype.slice.call(arguments);
 	    var ret;
 
 	    if( __CONSTRUCT3_RUNTIME3__ )
-	    	ret = {set_int(){}, set_float(){}, set_string(){}, set_any(){}};
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
 		else
 		{
 			ret = params_[0];

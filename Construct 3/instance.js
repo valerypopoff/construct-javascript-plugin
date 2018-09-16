@@ -24,7 +24,15 @@
 		
 		LoadC2Property(name, valueString)
 		{
-			return false;		// not handled
+			switch(name) 
+			{
+				case "Script files".toLowerCase().split(" ").join("-"):
+					this._inst.SetPropertyValue("Scriptfiles", valueString);
+					return true;
+					
+			}	
+			
+			return false;
 		}
 	};
 }

@@ -256,30 +256,30 @@
 				} 
 				
 				if( __CONSTRUCT3_RUNTIME3__ )
-				{					
-					let filename = lines[i];
+				{
+					var this_ = this;
 					
 					// For Construct3 r116 and higher
-					if( this._runtime.GetAssetManager().LoadProjectFileUrl !== undefined )
+					if( this_._runtime.GetAssetManager().LoadProjectFileUrl !== undefined )
 					{
-						this._runtime.GetAssetManager().LoadProjectFileUrl( filename )
-						.then(url=>
+						this_._runtime.GetAssetManager().LoadProjectFileUrl( lines[i] )
+						.then(function(url)
 						{
-							AddScriptToPage(this, url)
-						}, err=>
+							AddScriptToPage(this_, url)
+						}, function(err)
 						{
-							this.ShowError(
+							this_.ShowError(
 							{
-								debug_caller: "Including '"+ filename +"' script to the page",
-								caller_name: "Including '"+ filename +"' script to the page",              
+								debug_caller: "Including '"+ lines[i] +"' script to the page",
+								caller_name: "Including '"+ lines[i] +"' script to the page",              
 								error_message: err.message
 							});
-						}).catch(err=>
+						}).catch(function(err)
 						{
-							this.ShowError(
+							this_.ShowError(
 							{
-								debug_caller: "Including '"+ filename +"' script to the page",
-								caller_name: "Including '"+ filename +"' script to the page",              
+								debug_caller: "Including '"+ lines[i] +"' script to the page",
+								caller_name: "Including '"+ lines[i] +"' script to the page",              
 								error_message: err.message
 							});
 						})
@@ -287,11 +287,11 @@
 					// For Construct3 r115 and lower
 					else
 					{
-						AddScriptToPage(this, this._runtime.GetAssetManager().GetLocalFileUrl( filename ));
+						AddScriptToPage(this_, this_._runtime.GetAssetManager().GetLocalFileUrl( lines[i] ));
 					}
 				}
 			}
-		}		
+		}
 		}
 		
 		Release()
@@ -314,7 +314,7 @@
 
 
 	var InstanceFunctionsObject = {
-	ShowError( info )
+	ShowError: function( info )
 	{
 
 		var error_str = "ValerypopoffJS plugin: Error in " + info.caller_name + "\n";
@@ -344,7 +344,7 @@
 		console.error( error_str );	
 	},
 	
-	Resolve( dotparts_, caller_name_, code_, alias_name_, alias_trailer_ )
+	Resolve: function( dotparts_, caller_name_, code_, alias_name_, alias_trailer_ )
 	{
 		var context = window;
 		var end = context;
@@ -459,7 +459,7 @@
 		return { error: false, context: context, end: end, endname: endname };
 	},
 	
-	ParseJS(code_, is_alias_, caller_name_)
+	ParseJS: function(code_, is_alias_, caller_name_)
 	{
 		var alias_found = false;
 		var alias_name = undefined;

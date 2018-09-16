@@ -3,7 +3,7 @@
 	"type": "plugin",
 	"name": "ValerypopoffJS",
 	"id": "ValerypopoffJSPlugin",
-	"version": "0.6.4",
+	"version": "0.6.5",
 	"author": "Valera Popov",
 	"website": "http://valerypopoff.ru/",
 	"documentation": "https://readymag.com/valerypopoff/valerypopoff-js-plugin/",

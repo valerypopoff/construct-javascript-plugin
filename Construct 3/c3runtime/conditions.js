@@ -3,7 +3,7 @@
 {
 	var CndsObject =
 	{
-	C2CompareFunctionReturnValue(value_, cmp_, funcname_, funcparams_)
+	C2CompareFunctionReturnValue: function(value_, cmp_, funcname_, funcparams_)
     {   
         switch( cmp_ )
         {
@@ -15,7 +15,7 @@
  
         return this.CNDS.CompareFunctionReturnValue.call( this, funcname_, funcparams_, cmp_, value_ );
     },
-	C2CompareAliasCallReturnValue(value_, cmp_, alias_exp_, funcparams_)
+	C2CompareAliasCallReturnValue: function(value_, cmp_, alias_exp_, funcparams_)
     {   
         switch( cmp_ )
         {
@@ -27,7 +27,7 @@
  
         return this.CNDS.CompareAliasCallReturnValue.call( this, alias_exp_, funcparams_, cmp_, value_ );
     },
-	C2CompareExecReturnWithParams(value_, cmp_, code_, params_)
+	C2CompareExecReturnWithParams: function(value_, cmp_, code_, params_)
     {   
         switch( cmp_ )
         {
@@ -39,7 +39,7 @@
  
         return this.CNDS.CompareExecReturnWithParams.call( this, code_, params_, cmp_, value_ );
     },
-	CompareExecReturnWithParams(code_, params_, cmp_, value_)
+	CompareExecReturnWithParams: function(code_, params_, cmp_, value_)
     {   
         var ret = undefined;
         var caller_name_ = "'Compare JS code Completion value' condition";
@@ -73,7 +73,7 @@
              
         return cr.do_cmp(ret, cmp_, value_);
     },
-	CompareFunctionReturnValue(funcname_, funcparams_, cmp_, value_)
+	CompareFunctionReturnValue: function(funcname_, funcparams_, cmp_, value_)
     {   
         var store_return_value_ = false;
         var ret = undefined;
@@ -89,7 +89,7 @@
 
         //Double(12) > 24
     },
-	CompareStoredReturnValue(cmp_, value_)
+	CompareStoredReturnValue: function(cmp_, value_)
     {   
         var ret = this.returnValue;
  
@@ -98,11 +98,11 @@
              
         return cr.do_cmp(ret, cmp_, value_);
     },
-	AllScriptsLoaded()
+	AllScriptsLoaded: function()
     {   
         return ( this.sciptsToLoad <= 0 ) ? true : false;
     },
-	CompareAliasValue(alias_exp_, cmp_, value_)
+	CompareAliasValue: function(alias_exp_, cmp_, value_)
     {   
         var caller_name_ = "'Compare alias' condition";
         var store_return_value_ = false;
@@ -164,7 +164,7 @@
             return cr.do_cmp(ret, cmp_, value_);
         }
     },
-	CompareAliasCallReturnValue(alias_exp_, funcparams_, cmp_, value_)
+	CompareAliasCallReturnValue: function(alias_exp_, funcparams_, cmp_, value_)
     {   
         var store_return_value_ = false;
         var ret = undefined;
